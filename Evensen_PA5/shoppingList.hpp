@@ -1,5 +1,4 @@
-#include "queue.hpp"
-#include "test.h"
+#pragma once
 
 /*******************************************************************************
  * Programmer: Drew Evensen		                                               *
@@ -11,13 +10,24 @@
  *				shoppers.													   *
  ******************************************************************************/
 
-int main(int argc, char argv[])
+#include "listNode.hpp"
+
+class LinkedList
 {
-	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
+public:
+	// Constructors
+	LinkedList();
+	LinkedList(const LinkedList& rhs);
 
-	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
+	// Getters
+	ListNode* getHead() const { return mpHead; }
 
-	return 0;
-}
+	// Insertion Method
+	void insertFront(const string& item);
+
+private:
+	ListNode* mpHead;
+};
+
+// Gets the length of a linked list
+int length(const ListNode* list);

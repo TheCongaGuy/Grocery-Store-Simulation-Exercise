@@ -1,5 +1,4 @@
-#include "queue.hpp"
-#include "test.h"
+#pragma once
 
 /*******************************************************************************
  * Programmer: Drew Evensen		                                               *
@@ -11,13 +10,26 @@
  *				shoppers.													   *
  ******************************************************************************/
 
-int main(int argc, char argv[])
+#include "queueNode.hpp"
+
+// Given Queue class
+class Queue
 {
-	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
+public: // Member functions
+    // Constructor
+    Queue();
 
-	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
+    // Insertion method
+    void enqueue(const LinkedList& shoppingList);
 
-	return 0;
-}
+    // Check to see if the queue is empty
+    // Returns true if queue is empty
+    bool isEmpty();
+
+    // Prints the queue to the screen
+    void printQueue();
+
+private:
+    QueueNode* pHead;
+    QueueNode* pTail;
+};

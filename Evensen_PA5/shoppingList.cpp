@@ -1,5 +1,4 @@
-#include "queue.hpp"
-#include "test.h"
+#include "shoppingList.hpp"
 
 /*******************************************************************************
  * Programmer: Drew Evensen		                                               *
@@ -11,13 +10,39 @@
  *				shoppers.													   *
  ******************************************************************************/
 
-int main(int argc, char argv[])
+// Constructors
+LinkedList::LinkedList()
 {
-	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
+	mpHead = nullptr;
+}
+LinkedList::LinkedList(const LinkedList& rhs)
+{
+	mpHead = rhs.mpHead;
+}
 
-	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
+// Insertion Method
+void LinkedList::insertFront(const string& item)
+{
+	ListNode* pMem = new ListNode(item);
 
-	return 0;
+	// List is empty
+	if (mpHead == nullptr)
+		mpHead = pMem;
+
+	// List is not empty
+	else
+	{
+		mpHead->setPPrev(pMem);
+		pMem->setPNext(mpHead);
+		mpHead = pMem;
+	}
+}
+
+// Gets the length of a linked list
+int length(const ListNode* node)
+{
+	if (node != nullptr)
+		return 1 + length(node->getPNext());
+	else
+		return 0;
 }

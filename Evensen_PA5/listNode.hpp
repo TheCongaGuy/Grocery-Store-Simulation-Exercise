@@ -1,5 +1,4 @@
-#include "queue.hpp"
-#include "test.h"
+#pragma once
 
 /*******************************************************************************
  * Programmer: Drew Evensen		                                               *
@@ -11,13 +10,28 @@
  *				shoppers.													   *
  ******************************************************************************/
 
-int main(int argc, char argv[])
+#include <iostream>
+#include <string>
+
+using std::string;
+
+class ListNode
 {
-	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
+public:
+	// Constructors
+	ListNode(const string item);
 
-	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
+	// Getters
+	string getItem() const { return item; }
+	ListNode* getPPrev() const { return mpPrev; }
+	ListNode* getPNext() const { return mpNext; }
 
-	return 0;
-}
+	// Setters
+	void setPPrev(ListNode* nPPrev) { mpPrev = nPPrev; }
+	void setPNext(ListNode* nPNext) { mpNext = nPNext; }
+
+private:
+	string item;
+	ListNode* mpPrev;
+	ListNode* mpNext;
+};

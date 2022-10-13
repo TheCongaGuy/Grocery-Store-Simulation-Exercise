@@ -1,5 +1,4 @@
-#include "queue.hpp"
-#include "test.h"
+#include "queueNode.hpp"
 
 /*******************************************************************************
  * Programmer: Drew Evensen		                                               *
@@ -11,13 +10,10 @@
  *				shoppers.													   *
  ******************************************************************************/
 
-int main(int argc, char argv[])
+// Constructors
+QueueNode::QueueNode(const LinkedList& npShoppingList)
 {
-	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
-
-	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
-
-	return 0;
+	pData = new Data(npShoppingList);
+	pShoppingList = new LinkedList(npShoppingList);
+	pNext = nullptr;
 }

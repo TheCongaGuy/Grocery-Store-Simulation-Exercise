@@ -1,5 +1,4 @@
-#include "queue.hpp"
-#include "test.h"
+#include "data.hpp"
 
 /*******************************************************************************
  * Programmer: Drew Evensen		                                               *
@@ -11,13 +10,22 @@
  *				shoppers.													   *
  ******************************************************************************/
 
-int main(int argc, char argv[])
+// Constructors
+Data::Data(const LinkedList& shoppingList, const Data* preData)
 {
-	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
+	serviceTime = length(shoppingList.getHead());
 
-	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
+	// Starting data point
+	if (preData == nullptr)
+	{
+		customerNumber = 1;
+		totalTime = serviceTime;
+	}
 
-	return 0;
+	// Data point further in list
+	else
+	{
+		customerNumber = 1 + preData->getCustomerNumber();
+		totalTime = serviceTime + preData->getTotalTime();
+	}
 }

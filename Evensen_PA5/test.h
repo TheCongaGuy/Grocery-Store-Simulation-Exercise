@@ -1,5 +1,4 @@
-#include "queue.hpp"
-#include "test.h"
+# pragma once
 
 /*******************************************************************************
  * Programmer: Drew Evensen		                                               *
@@ -11,13 +10,10 @@
  *				shoppers.													   *
  ******************************************************************************/
 
-int main(int argc, char argv[])
-{
-	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
+#include "queue.hpp"
 
-	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
-
-	return 0;
-}
+// Test cases for queue
+bool testEnqueueEmpty(); // Enqueue to an empty queue
+bool testEnqueueCapOne(); // Enqueue to a queue containing one node
+bool testDequeueCapOne(); // Dequeue to a queue containing one node
+bool testDequeueCapTwo(); // Dequeue to a queue containing two nodes

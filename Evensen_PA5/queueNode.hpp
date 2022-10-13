@@ -1,5 +1,4 @@
-#include "queue.hpp"
-#include "test.h"
+#pragma once
 
 /*******************************************************************************
  * Programmer: Drew Evensen		                                               *
@@ -11,13 +10,20 @@
  *				shoppers.													   *
  ******************************************************************************/
 
-int main(int argc, char argv[])
+#include "data.hpp"
+
+// Given QueueNode class
+class QueueNode
 {
-	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
+public: // Member functions
+    // Constructor
+    QueueNode(const LinkedList& pShoppingList);
 
-	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
+    // Getters
+    Data* getData() const { return pData; }
 
-	return 0;
-}
+private:
+    Data* pData;    // The memory for Data will need to be allocated on the heap as well!
+    LinkedList* pShoppingList;
+    QueueNode* pNext;
+};
