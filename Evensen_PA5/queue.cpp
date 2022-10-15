@@ -36,17 +36,24 @@ void Queue::enqueue(const LinkedList& nShoppingList)
 		pTail = pHead;
 	}
 
-	// Queue has one node
-	else if (pHead = pTail)
-	{
-		// Implement: getters and setters for QueueNode, Insertion Method for one node, Insertion Method for multiple nodes
-	}
-
-	// Queue has multiple nodes
+	// Queue is not empty
 	else
 	{
-
+		pTail->setPNext(new QueueNode(nShoppingList, pTail->getData()));
+		pTail = pTail->getPNext();
 	}
+}
+
+// Deletion method
+void Queue::dequeue()
+{
+	QueueNode* pTemp = pHead;
+	pHead = pHead->getPNext();
+
+	if (pHead == nullptr)
+		pTail = pHead;
+
+	delete pTemp;
 }
 
 // Prints the queue to the screen
@@ -58,5 +65,5 @@ void Queue::printQueue()
 
 	// Queue is not empty
 	else
-		std::cout << pTail->getData()->getCustomerNumber() << " customer(s) in line. Estimated wait time: " << pTail->getData()->getTotalTime() << std::endl;
+		std::cout << pTail->getData()->getCustomerNumber() << " customer(s) in line. Estimated wait time: " << pTail->getData()->getTotalTime() << " minutes" << std::endl;
 }

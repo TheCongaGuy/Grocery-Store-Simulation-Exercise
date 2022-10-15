@@ -18,21 +18,36 @@ bool testEnqueueEmpty()
 	LinkedList testShop, testShop2;
 
 	// <------ Test 1 ------>
-	std::cout << "Queue 1: " << std::endl;
+	std::cout << "Enqueue Test 1: " << std::endl;
 	testShop.insertFront("Milk");
 	testShop.insertFront("Eggs");
 	testShop.insertFront("Yogurt");
 	newQueue.enqueue(testShop);
 	newQueue.printQueue();
+
 	if (newQueue.isEmpty())
 		return false;
+	if (newQueue.peekHead()->getCustomerNumber() != 1)
+		return false;
+	if (newQueue.peekHead()->getServiceTime() != 3)
+		return false;
+	if (newQueue.peekHead()->getTotalTime() != 3)
+		return false;
+	
 
 	// <------ Test 2 ------>
-	std::cout << "Queue 2: " << std::endl;
+	std::cout << "Enqueue Test 2: " << std::endl;
 	testShop2.insertFront("Bacon");
 	newQueue2.enqueue(testShop2);
 	newQueue2.printQueue();
-	if (newQueue.isEmpty())
+
+	if (newQueue2.isEmpty())
+		return false;
+	if (newQueue2.peekHead()->getCustomerNumber() != 1)
+		return false;
+	if (newQueue2.peekHead()->getServiceTime() != 1)
+		return false;
+	if (newQueue2.peekHead()->getTotalTime() != 1)
 		return false;
 
 	return true;
@@ -43,13 +58,26 @@ bool testEnqueueCapOne()
 {
 	Queue newQueue;
 	LinkedList testShop, testShop2;
+
+	std::cout << "Enqueue CapOne Test : " << std::endl;
 	testShop.insertFront("Milk");
 	testShop.insertFront("Eggs");
 	testShop.insertFront("Yogurt");
 	newQueue.enqueue(testShop);
+	newQueue.printQueue();
+
 	testShop2.insertFront("Bacon");
 	newQueue.enqueue(testShop2);
 	newQueue.printQueue();
+
+	if (newQueue.isEmpty())
+		return false;
+	if (newQueue.peekTail()->getCustomerNumber() != 2 || newQueue.peekHead()->getCustomerNumber() != 1)
+		return false;
+	if (newQueue.peekTail()->getServiceTime() != 1 || newQueue.peekHead()->getServiceTime() != 3)
+		return false;
+	if (newQueue.peekTail()->getTotalTime() != 4)
+		return false;
 
 	return true;
 }
@@ -58,6 +86,21 @@ bool testEnqueueCapOne()
 bool testDequeueCapOne()
 {
 	Queue newQueue;
+	LinkedList testShop;
+
+	std::cout << "Dequeue CapOne Test: " << std::endl;
+	testShop.insertFront("Milk");
+	testShop.insertFront("Eggs");
+	testShop.insertFront("Yogurt");
+	newQueue.enqueue(testShop);
+	newQueue.printQueue();
+
+	newQueue.dequeue();
+
+	newQueue.printQueue();
+
+	if (!newQueue.isEmpty())
+		return false;
 
 	return true;
 }
@@ -66,6 +109,26 @@ bool testDequeueCapOne()
 bool testDequeueCapTwo()
 {
 	Queue newQueue;
+	LinkedList testShop;
+
+	std::cout << "Dequeue CapTwo Test: " << std::endl;
+	testShop.insertFront("Milk");
+	testShop.insertFront("Eggs");
+	testShop.insertFront("Yogurt");
+	newQueue.enqueue(testShop);
+	newQueue.enqueue(testShop);
+	newQueue.printQueue();
+
+	newQueue.dequeue();
+
+	newQueue.printQueue();
+
+	if (newQueue.peekTail()->getCustomerNumber() != 1)
+		return false;
+	if (newQueue.peekTail()->getServiceTime() != 3 || newQueue.peekTail()->getTotalTime() != 3)
+		return false;
+	if (newQueue.peekHead() != newQueue.peekTail())
+		return false;
 
 	return true;
 }

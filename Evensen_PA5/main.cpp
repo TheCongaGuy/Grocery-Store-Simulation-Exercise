@@ -13,11 +13,19 @@
 
 int main(int argc, char argv[])
 {
+	// <TEST CASES>
 	if(testEnqueueEmpty())
-		std::cout << std::endl << "Passed EnqueueEmpty()" << std::endl;
+		std::cout << "Passed EnqueueEmpty()" << std::endl << std::endl;
 
 	if (testEnqueueCapOne())
-		std::cout << std::endl << "Passed EnqueueCapOne()" << std::endl;
+		std::cout << "Passed EnqueueCapOne()" << std::endl << std::endl;
+
+	if (testDequeueCapOne())
+		std::cout << "Passed DequeueCapOne()" << std::endl << std::endl;
+
+	if (testDequeueCapTwo())
+		std::cout << "Passed DequeueCapTwo()" << std::endl << std::endl;
+	// <END TEST CASES>
 
 	return 0;
 }

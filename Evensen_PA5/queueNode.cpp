@@ -11,9 +11,9 @@
  ******************************************************************************/
 
 // Constructors
-QueueNode::QueueNode(const LinkedList& npShoppingList)
+QueueNode::QueueNode(const LinkedList& npShoppingList, const Data* preData)
 {
-	pData = new Data(npShoppingList);
+	pData = new Data(npShoppingList, preData);
 	pShoppingList = new LinkedList(npShoppingList);
 	pNext = nullptr;
 }

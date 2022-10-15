@@ -17,11 +17,15 @@ class QueueNode
 {
 public: // Member functions
     // Constructor
-    QueueNode(const LinkedList& pShoppingList);
+    QueueNode(const LinkedList& pShoppingList, const Data* pData = nullptr);
 
     // Getters
     Data* getData() const { return pData; }
+    LinkedList* getShoppingList() const { return pShoppingList; }
+    QueueNode* getPNext() const { return pNext; }
 
+    // Setters
+    void setPNext(QueueNode* nNext) { pNext = nNext; }
 private:
     Data* pData;    // The memory for Data will need to be allocated on the heap as well!
     LinkedList* pShoppingList;

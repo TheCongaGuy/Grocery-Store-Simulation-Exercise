@@ -22,6 +22,9 @@ public: // Member functions
     // Insertion method
     void enqueue(const LinkedList& shoppingList);
 
+    // Deletion method
+    void dequeue();
+
     // Check to see if the queue is empty
     // Returns true if queue is empty
     bool isEmpty();
@@ -29,7 +32,12 @@ public: // Member functions
     // Prints the queue to the screen
     void printQueue();
 
+    // Peeks at the head or tail of the queue
+    Data* peekHead() const { return pHead->getData(); }
+    Data* peekTail() const { return pTail->getData(); }
+
 private:
     QueueNode* pHead;
     QueueNode* pTail;
 };
+
