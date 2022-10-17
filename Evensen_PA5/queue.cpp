@@ -19,6 +19,14 @@ Queue::Queue()
 	pTail = nullptr;
 }
 
+// Destructor
+Queue::~Queue()
+{
+	// Iterate through the queue
+	while (pHead != nullptr)
+		dequeue();
+}
+
 // Check to see if queue is empty
 // Returns true if queue is empty
 bool Queue::isEmpty()
@@ -52,6 +60,8 @@ void Queue::dequeue()
 
 	if (pHead == nullptr)
 		pTail = pHead;
+	else
+		pHead->updateWaitTime(pTemp->getData()->getServiceTime());
 
 	delete pTemp;
 }
@@ -65,5 +75,21 @@ void Queue::printQueue()
 
 	// Queue is not empty
 	else
-		std::cout << pTail->getData()->getCustomerNumber() << " customer(s) in line. Estimated wait time: " << pTail->getData()->getTotalTime() << " minutes" << std::endl;
+		std::cout << queueLength(pHead) << " customer(s) in line. Estimated wait time: " << pTail->getData()->getTotalTime() << " minutes" << std::endl;
+}
+
+// Returns the number of items in a queue
+// Takes a pointer to the head of the node
+int queueLength(QueueNode* const pHead)
+{
+	int len = 0;
+	QueueNode* pCur = pHead;
+
+	while (pCur != nullptr)
+	{
+		len++;
+		pCur = pCur->getPNext();
+	}
+
+	return len;
 }

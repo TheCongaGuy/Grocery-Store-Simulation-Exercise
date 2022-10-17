@@ -23,7 +23,6 @@ bool testEnqueueEmpty()
 	testShop.insertFront("Eggs");
 	testShop.insertFront("Yogurt");
 	newQueue.enqueue(testShop);
-	newQueue.printQueue();
 
 	if (newQueue.isEmpty())
 		return false;
@@ -39,7 +38,6 @@ bool testEnqueueEmpty()
 	std::cout << "Enqueue Test 2: " << std::endl;
 	testShop2.insertFront("Bacon");
 	newQueue2.enqueue(testShop2);
-	newQueue2.printQueue();
 
 	if (newQueue2.isEmpty())
 		return false;
@@ -64,11 +62,9 @@ bool testEnqueueCapOne()
 	testShop.insertFront("Eggs");
 	testShop.insertFront("Yogurt");
 	newQueue.enqueue(testShop);
-	newQueue.printQueue();
 
 	testShop2.insertFront("Bacon");
 	newQueue.enqueue(testShop2);
-	newQueue.printQueue();
 
 	if (newQueue.isEmpty())
 		return false;
@@ -93,11 +89,8 @@ bool testDequeueCapOne()
 	testShop.insertFront("Eggs");
 	testShop.insertFront("Yogurt");
 	newQueue.enqueue(testShop);
-	newQueue.printQueue();
 
 	newQueue.dequeue();
-
-	newQueue.printQueue();
 
 	if (!newQueue.isEmpty())
 		return false;
@@ -117,18 +110,99 @@ bool testDequeueCapTwo()
 	testShop.insertFront("Yogurt");
 	newQueue.enqueue(testShop);
 	newQueue.enqueue(testShop);
-	newQueue.printQueue();
 
 	newQueue.dequeue();
 
-	newQueue.printQueue();
-
-	if (newQueue.peekTail()->getCustomerNumber() != 1)
+	if (newQueue.peekTail()->getCustomerNumber() != 2)
 		return false;
-	if (newQueue.peekTail()->getServiceTime() != 3 || newQueue.peekTail()->getTotalTime() != 3)
+	if (newQueue.peekTail()->getServiceTime() != 3)
 		return false;
 	if (newQueue.peekHead() != newQueue.peekTail())
 		return false;
+	if (newQueue.peekTail()->getTotalTime() != 3)
+		return false;
 
 	return true;
+}
+
+bool test24HourRun()
+{
+	try
+	{
+		srand(time(NULL));
+
+		Queue express;
+		Queue normal;
+
+		int expArr = 0, expServeTime = 0;
+		int norArr = 0, norServeTime = 0;
+
+		for (int time = 1; time <= 1140; time++)
+		{
+			expArr--;
+			norArr--;
+
+			// Add another customer when arrival time reaches 0
+			if (expArr <= 0)
+			{
+				LinkedList shopList;
+
+				switch (rand() % 4 + 1)
+				{
+				case 4: shopList.insertFront("Eggs");
+				case 3: shopList.insertFront("Bacon");
+				case 2: shopList.insertFront("Cheese");
+				case 1: shopList.insertFront("Ham");
+				}
+
+				express.enqueue(shopList);
+
+				expArr = rand() % 4 + 1;
+			}
+			if (norArr <= 0)
+			{
+				LinkedList shopList;
+
+				switch (rand() % 4 + 1)
+				{
+				case 4:shopList.insertFront("Eggs");
+				case 3:shopList.insertFront("Bacon");
+				case 2:shopList.insertFront("Cheese");
+				case 1:shopList.insertFront("Ham");
+				}
+
+				normal.enqueue(shopList);
+
+				norArr = rand() % 6 + 3;
+			}
+
+			// Dequeue customers who are finished
+			if (!express.isEmpty())
+			{
+				expServeTime++;
+
+				if (express.peekHead()->getServiceTime() <= expServeTime)
+				{
+					express.dequeue();
+					expServeTime = 0;
+				}
+			}
+			if (!normal.isEmpty())
+			{
+				norServeTime++;
+
+				if (normal.peekHead()->getServiceTime() <= norServeTime)
+				{
+					normal.dequeue();
+					norServeTime = 0;
+				}
+			}
+		}
+
+		return true;
+	}
+	catch (...)
+	{
+		return false;
+	}
 }

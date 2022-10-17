@@ -18,6 +18,9 @@ class Queue
 public: // Member functions
     // Constructor
     Queue();
+    
+    // Destructor
+    ~Queue();
 
     // Insertion method
     void enqueue(const LinkedList& shoppingList);
@@ -41,3 +44,4 @@ private:
     QueueNode* pTail;
 };
 
+int queueLength(QueueNode* const pHead);

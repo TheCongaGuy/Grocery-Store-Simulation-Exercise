@@ -17,7 +17,26 @@ LinkedList::LinkedList()
 }
 LinkedList::LinkedList(const LinkedList& rhs)
 {
-	mpHead = rhs.mpHead;
+	ListNode* pCur = rhs.mpHead;
+
+	while (pCur != nullptr)
+	{
+		insertFront(pCur->getItem());
+		pCur = pCur->getPNext();
+	}
+}
+
+// Destructor
+LinkedList::~LinkedList()
+{
+	ListNode* pTemp = mpHead;
+
+	while (mpHead != nullptr)
+	{
+		mpHead = mpHead->getPNext();
+		delete pTemp;
+		pTemp = mpHead;
+	}
 }
 
 // Insertion Method
@@ -39,7 +58,7 @@ void LinkedList::insertFront(const string& item)
 }
 
 // Gets the length of a linked list
-int length(const ListNode* node)
+int length(const ListNode* const node)
 {
 	if (node != nullptr)
 		return 1 + length(node->getPNext());

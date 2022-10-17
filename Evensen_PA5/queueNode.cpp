@@ -17,3 +17,18 @@ QueueNode::QueueNode(const LinkedList& npShoppingList, const Data* preData)
 	pShoppingList = new LinkedList(npShoppingList);
 	pNext = nullptr;
 }
+
+// Destructor
+QueueNode::~QueueNode()
+{
+	delete pData;
+	delete pShoppingList;
+}
+
+// Helper setter to update the wait time of the queue
+void QueueNode::updateWaitTime(int waitReduce)
+{
+	pData->setTotalTime(pData->getTotalTime() - waitReduce);
+	if (pNext != nullptr)
+		pNext->updateWaitTime(waitReduce);
+}

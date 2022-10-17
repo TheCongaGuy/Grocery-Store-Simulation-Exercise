@@ -19,6 +19,9 @@ public:
 	LinkedList();
 	LinkedList(const LinkedList& rhs);
 
+	// Destructor
+	~LinkedList();
+
 	// Getters
 	ListNode* getHead() const { return mpHead; }
 
@@ -30,4 +33,4 @@ private:
 };
 
 // Gets the length of a linked list
-int length(const ListNode* list);
+int length(const ListNode* const list);

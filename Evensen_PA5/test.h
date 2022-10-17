@@ -17,3 +17,4 @@ bool testEnqueueEmpty(); // Enqueue to an empty queue
 bool testEnqueueCapOne(); // Enqueue to a queue containing one node
 bool testDequeueCapOne(); // Dequeue to a queue containing one node
 bool testDequeueCapTwo(); // Dequeue to a queue containing two nodes
+bool test24HourRun(); // Run the simulation for "24 hours"

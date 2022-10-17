@@ -24,6 +24,9 @@ public: // Member functions
     int getServiceTime() const { return serviceTime; }
     int getTotalTime() const { return totalTime; }
 
+    // Setters
+    void setTotalTime(int newTime) { totalTime = newTime; }
+
 private:
     int customerNumber; // Unique identifier; starts at 1; after 24 hours should be reset to 1
     int serviceTime;   // Random time; varies between express and normal lanes; units in minutes

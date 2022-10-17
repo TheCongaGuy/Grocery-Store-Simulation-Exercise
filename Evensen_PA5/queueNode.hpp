@@ -19,6 +19,9 @@ public: // Member functions
     // Constructor
     QueueNode(const LinkedList& pShoppingList, const Data* pData = nullptr);
 
+    // Destructor
+    ~QueueNode();
+
     // Getters
     Data* getData() const { return pData; }
     LinkedList* getShoppingList() const { return pShoppingList; }
@@ -26,6 +29,10 @@ public: // Member functions
 
     // Setters
     void setPNext(QueueNode* nNext) { pNext = nNext; }
+
+    // Helper setter to update the wait time of the queue
+    void updateWaitTime(int waitReduce);
+
 private:
     Data* pData;    // The memory for Data will need to be allocated on the heap as well!
     LinkedList* pShoppingList;
