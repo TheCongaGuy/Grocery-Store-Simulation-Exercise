@@ -22,7 +22,7 @@ Queue::Queue()
 // Destructor
 Queue::~Queue()
 {
-	// Iterate through the queue
+	// Iterate through the queue and dequeue all nodes
 	while (pHead != nullptr)
 		dequeue();
 }
@@ -35,19 +35,19 @@ bool Queue::isEmpty()
 }
 
 // Insertion Method
-void Queue::enqueue(const LinkedList& nShoppingList)
+void Queue::enqueue(const LinkedList& nShoppingList, const int ID)
 {
 	// Queue is empty
 	if (isEmpty())
 	{
-		pHead = new QueueNode(nShoppingList);
+		pHead = new QueueNode(nShoppingList, ID);
 		pTail = pHead;
 	}
 
 	// Queue is not empty
 	else
 	{
-		pTail->setPNext(new QueueNode(nShoppingList, pTail->getData()));
+		pTail->setPNext(new QueueNode(nShoppingList, ID, pTail->getData()));
 		pTail = pTail->getPNext();
 	}
 }

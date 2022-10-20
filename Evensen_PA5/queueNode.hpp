@@ -17,7 +17,7 @@ class QueueNode
 {
 public: // Member functions
     // Constructor
-    QueueNode(const LinkedList& pShoppingList, const Data* pData = nullptr);
+    QueueNode(const LinkedList& pShoppingList, const int ID, const Data* pData = nullptr);
 
     // Destructor
     ~QueueNode();
@@ -34,6 +34,7 @@ public: // Member functions
     void updateWaitTime(int waitReduce);
 
 private:
+    // Data members
     Data* pData;    // The memory for Data will need to be allocated on the heap as well!
     LinkedList* pShoppingList;
     QueueNode* pNext;

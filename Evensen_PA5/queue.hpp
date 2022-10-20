@@ -23,7 +23,7 @@ public: // Member functions
     ~Queue();
 
     // Insertion method
-    void enqueue(const LinkedList& shoppingList);
+    void enqueue(const LinkedList& shoppingList, const int ID);
 
     // Deletion method
     void dequeue();
@@ -40,8 +40,12 @@ public: // Member functions
     Data* peekTail() const { return pTail->getData(); }
 
 private:
+    // Data members
     QueueNode* pHead;
     QueueNode* pTail;
 };
 
+// Runs through the queue to find it's length
+// Takes the current head pointer of the queue; Cannot be null
+// Returns the number of nodes in the queue
 int queueLength(QueueNode* const pHead);

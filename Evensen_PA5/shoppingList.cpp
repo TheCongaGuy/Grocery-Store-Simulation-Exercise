@@ -15,6 +15,8 @@ LinkedList::LinkedList()
 {
 	mpHead = nullptr;
 }
+
+// Copy Constructor
 LinkedList::LinkedList(const LinkedList& rhs)
 {
 	ListNode* pCur = rhs.mpHead;
@@ -58,6 +60,8 @@ void LinkedList::insertFront(const string& item)
 }
 
 // Gets the length of a linked list
+// Takes the current head of the list
+// Returns the number of nodes in the list
 int length(const ListNode* const node)
 {
 	if (node != nullptr)

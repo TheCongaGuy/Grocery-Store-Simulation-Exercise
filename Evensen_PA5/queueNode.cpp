@@ -11,9 +11,9 @@
  ******************************************************************************/
 
 // Constructors
-QueueNode::QueueNode(const LinkedList& npShoppingList, const Data* preData)
+QueueNode::QueueNode(const LinkedList& npShoppingList, const int ID, const Data* preData)
 {
-	pData = new Data(npShoppingList, preData);
+	pData = new Data(npShoppingList, ID, preData);
 	pShoppingList = new LinkedList(npShoppingList);
 	pNext = nullptr;
 }
@@ -28,6 +28,7 @@ QueueNode::~QueueNode()
 // Helper setter to update the wait time of the queue
 void QueueNode::updateWaitTime(int waitReduce)
 {
+	// Go through the queue and subtract the wait reduce integer from all nodes
 	pData->setTotalTime(pData->getTotalTime() - waitReduce);
 	if (pNext != nullptr)
 		pNext->updateWaitTime(waitReduce);

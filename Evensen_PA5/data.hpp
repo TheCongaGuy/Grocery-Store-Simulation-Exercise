@@ -17,7 +17,7 @@ class Data
 {
 public: // Member functions
     // Constructors
-    Data(const LinkedList& shoppingList, const Data* preData = nullptr);
+    Data(const LinkedList& shoppingList, const int ID, const Data* preData = nullptr);
 
     // Getters
     int getCustomerNumber() const { return customerNumber; }

@@ -11,21 +11,16 @@
  ******************************************************************************/
 
 // Constructors
-Data::Data(const LinkedList& shoppingList, const Data* preData)
+Data::Data(const LinkedList& shoppingList, const int ID, const Data* preData)
 {
 	serviceTime = length(shoppingList.getHead());
+	customerNumber = ID;
 
 	// Starting data point
 	if (preData == nullptr)
-	{
-		customerNumber = 1;
 		totalTime = serviceTime;
-	}
 
 	// Data point further in list
 	else
-	{
-		customerNumber = 1 + preData->getCustomerNumber();
 		totalTime = serviceTime + preData->getTotalTime();
-	}
 }

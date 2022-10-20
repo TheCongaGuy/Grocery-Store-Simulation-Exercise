@@ -45,37 +45,45 @@ int main(int argc, char argv[])
 	}
 #pragma endregion Test Cases before program start
 
+	// Catches user input
 	int runTime;
 
+	// Prompt the user for the runtime of the simulation
 	std::cout << "This is a simulation of a grocery store given a certain amount of minutes go by." << std::endl
 		<< "There are two checkout lanes, an express lane and a normal lane." << std::endl
 		<< "Customers arrive to the express lane every one to five minutes." << std::endl
 		<< "Customers arrive to the normal lane every three to eight minutes." << std::endl
 		<< "How many minutes would you like to run the simulation for?" << std::endl;
 
+	// Catch the users choice
 	std::cin >> runTime;
 
 	std::cout << std::endl << "Running Simulation..." << std::endl;
 	system("pause");
 	system("cls");
 
-	srand(time(NULL));
+	// Set the seed to the current time
+	srand((unsigned)time(NULL));
 
+	// Initialize both queues
 	Queue express;
 	Queue normal;
 
+	// Integers to track arrival and serve times, as well as customer ID
 	int expArr = 0, expServeTime = 0;
 	int norArr = 0, norServeTime = 0;
-
+	int customer = 0;
 
 	for (int time = 1; time <= runTime; time++)
 	{
+		// Decrement the arrival times every minute
 		expArr--;
 		norArr--;
 
 		// Add another customer when arrival time reaches 0
 		if (expArr <= 0)
 		{
+			// Create a random shopping list
 			LinkedList shopList;
 
 			switch (rand() % 4 + 1)
@@ -86,14 +94,18 @@ int main(int argc, char argv[])
 			case 1: shopList.insertFront("Ham");
 			}
 
-			express.enqueue(shopList);
+			// Enqueue the list into the express lane
+			express.enqueue(shopList, ++customer);
 
+			// Alert the user that a customer has entered the express lane
 			std::cout << "Customer " << express.peekTail()->getCustomerNumber() << " entered Express Lane at " << time << " minutes" << std::endl;
 
+			// Generate a new arrival time
 			expArr = rand() % 4 + 1;
 		}
 		if (norArr <= 0)
 		{
+			// Populate a random shopping list
 			LinkedList shopList;
 
 			switch (rand() % 4 + 1)
@@ -104,20 +116,25 @@ int main(int argc, char argv[])
 			case 1:shopList.insertFront("Ham");
 			}
 
-			normal.enqueue(shopList);
+			// Enqueue the list into the normal lane
+			normal.enqueue(shopList, ++customer);
 
+			// Alert the user that a customer has entered the normal lane
 			std::cout << "Customer " << normal.peekTail()->getCustomerNumber() << " entered Normal Lane at " << time << " minutes" << std::endl;
 
+			// Generate a new arrival time
 			norArr = rand() % 6 + 3;
 		}
 
-		// Dequeue customers who are finished
+		// Increment the service time when a customer is in line
 		if (!express.isEmpty())
 		{
 			expServeTime++;
 
+			// Dequeue the customer when service time has been reached
 			if (express.peekHead()->getServiceTime() <= expServeTime)
 			{
+				// Alert the user a customer has left the express lane
 				std::cout << "Customer " << express.peekHead()->getCustomerNumber() << " exited Express Lane at " << time << " minutes" << std::endl;
 
 				express.dequeue();
@@ -128,8 +145,10 @@ int main(int argc, char argv[])
 		{
 			norServeTime++;
 
+			// Dequeue the customer when service time has been reached
 			if (normal.peekHead()->getServiceTime() <= norServeTime)
 			{
+				// Alert the user a customer has left the express lane
 				std::cout << "Customer " << normal.peekHead()->getCustomerNumber() << " exited Normal Lane at " << time << " minutes" << std::endl;
 
 				normal.dequeue();
@@ -137,6 +156,7 @@ int main(int argc, char argv[])
 			}
 		}
 
+		// Print the queues every 10 minutes
 		if (time % 10 == 0)
 		{
 			std::cout << "Time: " << time << " minutes in." << std::endl << "Express Lane: ";
@@ -148,6 +168,8 @@ int main(int argc, char argv[])
 			std::cout << std::endl;
 		}
 	}
+
+	std::cout << "Complete" << std::endl;
 
 	return 0;
 }

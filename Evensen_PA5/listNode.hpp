@@ -31,6 +31,7 @@ public:
 	void setPNext(ListNode* nPNext) { mpNext = nPNext; }
 
 private:
+	// Data Members
 	string item;
 	ListNode* mpPrev;
 	ListNode* mpNext;

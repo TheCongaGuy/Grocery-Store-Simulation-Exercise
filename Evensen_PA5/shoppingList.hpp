@@ -29,8 +29,11 @@ public:
 	void insertFront(const string& item);
 
 private:
+	// Data members
 	ListNode* mpHead;
 };
 
 // Gets the length of a linked list
+// Takes a pointer to the head of the list; Cannot be null
+// Returns the number of nodes in the list
 int length(const ListNode* const list);
