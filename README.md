@@ -7,22 +7,22 @@ This project involved simulating queues of customers in a grocery store; trackin
 ## Structure
 
 ```
-                                                      +---------------------+
-                                                      |        Main         |
-                                                      | Queue1       Queue2 |
-                                                      +---^-------------^---+
-                                                          |             |    
-             +------------------------+               +---+-------------+---+               +------------------------+
-             |          Data          |               |        Queue        |               |       LinkedList       |
-             |         int ID         +------+        |    qNode* pHead     |        +------+                        |
-             | int serTme  int totTme |      |        |    qNode* pTail     |        |      |    listNode* pHead     |
-             +------------------------+      |        +---------^-^---------+        |      +-----------^------------+
-                                             |                  | |                  |                  |
-                                             |       +----------+-+----------+       |      +-----------+------------+
-                                             |       |       queueNode       |       |      |        listNode        |
-                                             +-------> Data* ctm   LinLis* l <-------+      |    std::string item    |
-                                                     |     qNode* pNext      |              | lNde* pPrv  lNde* pNxt |
-                                                     +-----------------------+              +------------------------+
+                                            +---------------------+
+                                            |        Main         |
+                                            | Queue1       Queue2 |
+                                            +---^-------------^---+
+                                                |             |    
+   +------------------------+               +---+-------------+---+               +------------------------+
+   |          Data          |               |        Queue        |               |       LinkedList       |
+   |         int ID         +------+        |    qNode* pHead     |        +------+                        |
+   | int serTme  int totTme |      |        |    qNode* pTail     |        |      |    listNode* pHead     |
+   +------------------------+      |        +---------^-^---------+        |      +-----------^------------+
+                                   |                  | |                  |                  |
+                                   |       +----------+-+----------+       |      +-----------+------------+
+                                   |       |       queueNode       |       |      |        listNode        |
+                                   +-------> Data* ctm   LinLis* l <-------+      |    std::string item    |
+                                           |     qNode* pNext      |              | lNde* pPrv  lNde* pNxt |
+                                           +-----------------------+              +------------------------+
 
 ```
 
